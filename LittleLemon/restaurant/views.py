@@ -5,6 +5,7 @@ from .serializers import BookingSerializer, menuSerializer
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from django.http import HttpResponse
+
 def index(request):
     return render(request, 'index.html', {})
 
@@ -26,6 +27,7 @@ class BookingViewSet(viewsets.ModelViewSet):
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
     #permission_classes = [permissions.IsAutehtnicated]
+    permission_classes = [IsAuthenticated]
 
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
